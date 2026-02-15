@@ -1,0 +1,208 @@
+.main {
+  min-height: 100vh;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10%;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 0, 193, 0.05) 0%, transparent 40%);
+}
+
+.heroContent {
+  max-width: 800px;
+  text-align: center;
+}
+
+.name {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  margin: 10px 0;
+  letter-spacing: -2px;
+}
+
+.title {
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  color: var(--secondary);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.intro {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btnSecondary {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--foreground);
+}
+
+.section {
+  padding: 100px 10%;
+}
+
+.sectionHeading {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.sectionSub {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 60px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.skillCard {
+  padding: 32px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.skillCard:hover {
+  transform: translateY(-8px);
+}
+
+.skillIcon {
+  color: var(--primary);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.skillTags span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.projectsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.timeline {
+  border-left: 2px solid var(--glass-border);
+  padding-left: 32px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.timelineItem {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: -41px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.eduCard {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.eduIcon {
+  color: var(--primary);
+  width: 48px;
+  height: 48px;
+}
+
+.collegeLink {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.collegeLink:hover {
+  opacity: 0.8;
+}
+
+.eduMeta {
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.contactSection {
+  background: rgba(0, 210, 255, 0.03);
+}
+
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.contactInfo {
+  text-align: center;
+  max-width: 600px;
+}
+
+.contactInfo p {
+  margin-bottom: 32px;
+  color: var(--text-muted);
+}
+
+.footer {
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 5%;
+  }
+}
