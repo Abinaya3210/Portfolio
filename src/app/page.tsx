@@ -86,17 +86,17 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className={styles.hero} id="about">
-        <motion.div 
+        <motion.div
           className={styles.heroContent}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>Hi, I'm</motion.h2>
-          <motion.h1 
+          <motion.h1
             className={styles.name}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -104,7 +104,7 @@ export default function Home() {
           >
             Abinaya V
           </motion.h1>
-          <motion.h3 
+          <motion.h3
             className={styles.title}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -112,7 +112,7 @@ export default function Home() {
           >
             EMBEDDED AND IOT ENGINEER
           </motion.h3>
-          <motion.p 
+          <motion.p
             className={styles.intro}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,8 +121,8 @@ export default function Home() {
             Passionate about building intelligent hardware systems. Graduate from <strong>Amrita College of Engineering and Technology</strong>.
             Actively seeking opportunities to innovate in Embedded product development.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className={styles.locationSection}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -139,7 +139,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className={styles.heroBtns}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,7 +154,7 @@ export default function Home() {
       {/* Skills Section */}
       <section className={styles.section} id="skills">
         <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Technical <span className="gradient-text">Mastery</span></motion.h2>
-        <motion.div 
+        <motion.div
           className={styles.skillsGrid}
           variants={staggerContainer}
           initial="initial"
@@ -245,7 +245,7 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer}>
-        <p>&copy; {new Date().getFullYear()} Abinaya V. Designed with passion for Embedded Systems.</p>
+        <p>&copy; {new Date().getFullYear()} Abinaya V. Designed with passion for Embedded Systems. | Last updated: March 3, 2026</p>
       </footer>
     </main>
   );
