@@ -1,19 +1,20 @@
 .main {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10%;
-  background: radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(255, 0, 193, 0.05) 0%, transparent 40%);
+  padding: 100px 10% 60px;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(255, 0, 193, 0.1) 0%, transparent 40%);
 }
 
 .heroContent {
-  max-width: 800px;
+  max-width: 900px;
   text-align: center;
 }
 
@@ -22,6 +23,10 @@
   font-weight: 800;
   margin: 10px 0;
   letter-spacing: -2px;
+  background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .title {
@@ -30,13 +35,62 @@
   color: var(--secondary);
   font-weight: 400;
   margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 .intro {
   color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.locationSection {
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.locationTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--foreground);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.locationIcon {
+  color: var(--primary);
+}
+
+.locationBadges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.locationBadge {
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.locationBadge:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
 }
 
 .heroBtns {
@@ -46,17 +100,18 @@
 }
 
 .btnSecondary {
-  padding: 12px 24px;
+  padding: 12px 28px;
   border-radius: 30px;
   border: 1px solid var(--glass-border);
   background: var(--glass);
   font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btnSecondary:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--foreground);
+  transform: translateY(-2px);
 }
 
 .section {
@@ -64,15 +119,17 @@
 }
 
 .sectionHeading {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 12px;
   text-align: center;
+  font-weight: 800;
 }
 
 .sectionSub {
   text-align: center;
   color: var(--text-muted);
   margin-bottom: 60px;
+  font-size: 1.05rem;
 }
 
 .skillsGrid {
@@ -82,41 +139,51 @@
 }
 
 .skillCard {
-  padding: 32px;
+  padding: 40px 32px;
   text-align: center;
-  transition: transform 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .skillCard:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
 }
 
 .skillIcon {
   color: var(--primary);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  transform: scale(1.2);
 }
 
 .skillTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .skillTags span {
   background: rgba(255, 255, 255, 0.05);
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 8px;
   font-size: 0.85rem;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.skillTags span:hover {
+  border-color: var(--secondary);
+  background: rgba(58, 123, 213, 0.1);
 }
 
 .projectsGrid {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
 }
 
 .timeline {
@@ -127,7 +194,7 @@
 }
 
 .timelineItem {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   position: relative;
 }
 
@@ -140,41 +207,63 @@
   height: 16px;
   border-radius: 50%;
   background: var(--primary);
-  box-shadow: 0 0 10px var(--primary);
+  box-shadow: 0 0 15px var(--primary);
+}
+
+.eduGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .eduCard {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
   padding: 32px;
-  max-width: 800px;
-  margin: 0 auto;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.eduCard:hover {
+  transform: scale(1.02);
+  border-color: var(--primary);
+}
+
+.certCard {
+  border-left: 4px solid var(--accent);
 }
 
 .eduIcon {
   color: var(--primary);
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
 .collegeLink {
   color: var(--primary);
-  text-decoration: underline;
+  font-weight: 600;
+  text-decoration: none;
   transition: opacity 0.2s;
+  display: block;
+  margin-bottom: 4px;
 }
 
 .collegeLink:hover {
   opacity: 0.8;
+  text-decoration: underline;
 }
 
 .eduMeta {
   color: var(--text-muted);
-  margin-top: 4px;
+  font-size: 0.9rem;
 }
 
 .contactSection {
-  background: rgba(0, 210, 255, 0.03);
+  background: radial-gradient(circle at center, rgba(0, 210, 255, 0.05) 0%, transparent 70%);
 }
 
 .contactContainer {
@@ -185,24 +274,34 @@
 
 .contactInfo {
   text-align: center;
-  max-width: 600px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .contactInfo p {
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
 .footer {
-  padding: 40px;
+  padding: 60px 40px;
   text-align: center;
   border-top: 1px solid var(--glass-border);
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 60px 5%;
+    padding: 80px 5%;
+  }
+  
+  .hero {
+    padding-top: 120px;
+  }
+  
+  .eduGrid {
+    grid-template-columns: 1fr;
   }
 }

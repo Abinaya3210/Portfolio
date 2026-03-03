@@ -1,8 +1,11 @@
+'use client';
+
 import Navbar from '@/components/Navbar';
 import ProjectCard from '@/components/ProjectCard';
 import ContactBar from '@/components/ContactBar';
 import styles from './page.module.css';
-import { Cpu, Globe, Database, Award, BookOpen, Layers } from 'lucide-react';
+import { Cpu, Globe, Database, Award, Layers, MapPin, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   const projects = [
@@ -49,7 +52,7 @@ export default function Home() {
       title: "Smart Room Temperature Monitoring",
       description: "Home automation system with real-time Blynk alerts and AC control.",
       tags: ["ESP32", "DHT11", "Blynk", "Automation"],
-      image: "/project1.png", // Reusing project1 image as fallback
+      image: "/project1.png",
       details: [
         "Designed a home automation system using Arduino Uno, ESP32, and DHT11.",
         "Implemented UART communication between Arduino and ESP32.",
@@ -66,103 +69,183 @@ export default function Home() {
     { name: "Tools & Simulation", skills: ["Arduino IDE", "Keil v4/v5", "STM32CUBE", "Proteus", "LT Spice"], icon: <Database /> }
   ];
 
+  const locations = ["Chennai", "Madurai", "Thirunelveli", "Coimbatore", "Bangalore", "Thiruvananthapuram", "Mysore"];
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: { transition: { staggerChildren: 0.1 } }
+  };
+
   return (
     <main className={styles.main}>
       <Navbar />
-
+      
       {/* Hero Section */}
       <section className={styles.hero} id="about">
-        <div className={styles.heroContent}>
-          <h2 className="animate-fade-in">Hi, I'm</h2>
-          <h1 className={`${styles.name} animate-fade-in`}>Abinaya V</h1>
-          <h3 className={styles.title}>EMBEDDED AND IOT ENGINEER</h3>
-          <p className={styles.intro}>
-            Seeking a graduate-level opportunity to contribute to embedded product development
-            within an innovative engineering environment. Graduate from <strong>Amrita College of Engineering and Technology</strong>.
-          </p>
-          <div className={styles.heroBtns}>
+        <motion.div 
+          className={styles.heroContent}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>Hi, I'm</motion.h2>
+          <motion.h1 
+            className={styles.name}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Abinaya V
+          </motion.h1>
+          <motion.h3 
+            className={styles.title}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            EMBEDDED AND IOT ENGINEER
+          </motion.h3>
+          <motion.p 
+            className={styles.intro}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            Passionate about building intelligent hardware systems. Graduate from <strong>Amrita College of Engineering and Technology</strong>.
+            Actively seeking opportunities to innovate in Embedded product development.
+          </motion.p>
+          
+          <motion.div 
+            className={styles.locationSection}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <div className={styles.locationTitle}>
+              <MapPin size={18} className={styles.locationIcon} />
+              <span>Preferred Locations:</span>
+            </div>
+            <div className={styles.locationBadges}>
+              {locations.map(loc => (
+                <span key={loc} className={styles.locationBadge}>{loc}</span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className={styles.heroBtns}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
             <a href="#projects" className="btn-primary">View My Work</a>
             <a href="#contact" className={styles.btnSecondary}>Get In Touch</a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Skills Section */}
       <section className={styles.section} id="skills">
-        <h2 className={styles.sectionHeading}>Technical <span className="gradient-text">Mastery</span></h2>
-        <div className={styles.skillsGrid}>
+        <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Technical <span className="gradient-text">Mastery</span></motion.h2>
+        <motion.div 
+          className={styles.skillsGrid}
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+        >
           {skillGroups.map((group, i) => (
-            <div key={i} className={`${styles.skillCard} glass-card`}>
+            <motion.div key={i} className={`${styles.skillCard} glass-card`} variants={fadeInUp}>
               <div className={styles.skillIcon}>{group.icon}</div>
               <h3>{group.name}</h3>
               <div className={styles.skillTags}>
                 {group.skills.map(skill => <span key={skill}>{skill}</span>)}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Projects Section */}
       <section className={styles.section} id="projects">
-        <h2 className={styles.sectionHeading}>Featured <span className="gradient-text">Projects</span></h2>
-        <p className={styles.sectionSub}>Click on any project to see detailed overview and images.</p>
+        <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Featured <span className="gradient-text">Projects</span></motion.h2>
+        <motion.p className={styles.sectionSub} {...fadeInUp}>Click on any project to see detailed overview and images.</motion.p>
         <div className={styles.projectsGrid}>
           {projects.map((proj, i) => (
-            <ProjectCard key={i} {...proj} />
+            <motion.div key={i} {...fadeInUp} transition={{ delay: i * 0.1 }}>
+              <ProjectCard {...proj} />
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Experience / Internships */}
       <section className={styles.section}>
-        <h2 className={styles.sectionHeading}>Professional <span className="gradient-text">Journey</span></h2>
+        <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Professional <span className="gradient-text">Journey</span></motion.h2>
         <div className={styles.timeline}>
-          <div className={styles.timelineItem}>
-            <h3>Internet of Things Intern</h3>
-            <p>Acutro Technologies Pvt Ltd, Trivandrum | Jul 2022</p>
-          </div>
-          <div className={styles.timelineItem}>
-            <h3>Machine Learning Intern</h3>
-            <p>MATT Engineering Equipments, Nagercoil | Jan 2023</p>
-          </div>
-          <div className={styles.timelineItem}>
-            <h3>Robotics Intern</h3>
-            <p>MATT Engineering Equipments, Nagercoil | Jul 2023</p>
-          </div>
+          {[
+            { title: "Internet of Things Intern", loc: "Acutro Technologies Pvt Ltd, Trivandrum | Jul 2022" },
+            { title: "Machine Learning Intern", loc: "MATT Engineering Equipments, Nagercoil | Jan 2023" },
+            { title: "Robotics Intern", loc: "MATT Engineering Equipments, Nagercoil | Jul 2023" }
+          ].map((item, i) => (
+            <motion.div key={i} className={styles.timelineItem} {...fadeInUp} transition={{ delay: i * 0.1 }}>
+              <h3>{item.title}</h3>
+              <p>{item.loc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Education Section */}
       <section className={styles.section}>
-        <h2 className={styles.sectionHeading}>Education</h2>
-        <div className={`${styles.eduCard} glass-card`}>
-          <Award className={styles.eduIcon} />
-          <div>
-            <h3>Bachelor of Engineering (ECE)</h3>
-            <p>
-              <a href="https://www.amrita.edu/campus/nagercoil/" target="_blank" rel="noopener noreferrer" className={styles.collegeLink}>
-                Amrita College of Engineering and Technology, Nagercoil
-              </a>
-            </p>
-            <p className={styles.eduMeta}>2020 - 2024 | CGPA: 8.63</p>
-          </div>
+        <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Education & <span className="gradient-text">Certifications</span></motion.h2>
+        <div className={styles.eduGrid}>
+          {/* Main Degree */}
+          <motion.div className={`${styles.eduCard} glass-card`} {...fadeInUp}>
+            <Award className={styles.eduIcon} />
+            <div>
+              <h3>Bachelor of Engineering (ECE)</h3>
+              <p>
+                <a href="https://www.amrita.edu/campus/nagercoil/" target="_blank" rel="noopener noreferrer" className={styles.collegeLink}>
+                  Amrita College of Engineering and Technology, Nagercoil
+                </a>
+              </p>
+              <p className={styles.eduMeta}>2020 - 2024 | CGPA: 8.63</p>
+            </div>
+          </motion.div>
+
+          {/* New Certification */}
+          <motion.div className={`${styles.eduCard} glass-card ${styles.certCard}`} {...fadeInUp} transition={{ delay: 0.2 }}>
+            <CheckCircle className={styles.eduIcon} style={{ color: 'var(--accent)' }} />
+            <div>
+              <h3>Embedded and IoT Engineering</h3>
+              <p className={styles.collegeLink}>IPCS Global, Tambaram, Chennai</p>
+              <p className={styles.eduMeta}>6-Month Intensive Certified Course | Completed</p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className={`${styles.section} ${styles.contactSection}`} id="contact">
-        <h2 className={styles.sectionHeading}>Let's <span className="gradient-text">Connect</span></h2>
+        <motion.h2 className={styles.sectionHeading} {...fadeInUp}>Let's <span className="gradient-text">Connect</span></motion.h2>
         <div className={styles.contactContainer}>
-          <div className={styles.contactInfo}>
+          <motion.div className={styles.contactInfo} {...fadeInUp}>
             <p>Interested in working together? Reach out through any of these channels.</p>
             <ContactBar />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <p>&copy; 2025 Abinaya V. Designed with passion for Embedded Systems.</p>
+        <p>&copy; {new Date().getFullYear()} Abinaya V. Designed with passion for Embedded Systems.</p>
       </footer>
     </main>
   );
